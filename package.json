@@ -7,8 +7,13 @@
     "build": "webpack"
   },
   "devDependencies": {
+    "@babel/core": "^7.11.4",
     "@dfinity/agent": "0.6.4",
+    "babel-loader": "^8.1.0",
     "terser-webpack-plugin": "2.2.2",
+    "vue": "^2.6.12",
+    "vue-loader": "^15.9.3",
+    "vue-template-compiler": "^2.6.12",
     "webpack": "4.41.3",
     "webpack-cli": "3.3.10"
   }

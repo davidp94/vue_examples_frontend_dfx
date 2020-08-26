@@ -1,5 +1,6 @@
 const path = require("path");
 const TerserPlugin = require("terser-webpack-plugin");
+const { VueLoaderPlugin } = require("vue-loader");
 const dfxJson = require("./dfx.json");
 
 // List of all aliases for canisters. This creates the module alias for
@@ -52,18 +53,20 @@ function generateWebpackConfigForCanister(name, info) {
       path: path.join(__dirname, "dist", name),
     },
 
-    // Depending in the language or framework you are using for
-    // front-end development, add module loaders to the default
-    // webpack configuration. For example, if you are using React
-    // modules and CSS as described in the "Adding a stylesheet"
-    // tutorial, uncomment the following lines:
-    // module: {
-    //  rules: [
-    //    { test: /\.(js|ts)x?$/, loader: "ts-loader" },
-    //    { test: /\.css$/, use: ['style-loader','css-loader'] }
-    //  ]
-    // },
-    plugins: [],
+    module: {
+      rules: [
+        {
+          test: /\.vue$/,
+          loader: "vue-loader",
+        },
+        {
+          test: /\.js$/,
+          loader: "babel-loader",
+        },
+      ],
+    },
+
+    plugins: [new VueLoaderPlugin()],
   };
 }
 
